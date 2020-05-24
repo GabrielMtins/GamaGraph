@@ -34,7 +34,9 @@ void input(SDL_Event* e){
             generateFunctionImage(mainExpression);
             SDL_DestroyTexture(functionTexture);
             functionTexture = NULL;
-            functionTexture = loadTexture("function.bmp");
+            SDL_Surface* loadSurface = SDL_LoadBMP("function.bmp");
+            functionTexture = SDL_CreateTextureFromSurface(render, loadSurface);
+            SDL_FreeSurface(loadSurface);
         }
     }
     if(e->type == SDL_TEXTINPUT){
